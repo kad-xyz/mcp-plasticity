@@ -13,7 +13,7 @@ import { PrintedThreadQualificationStore } from "../printing/thread-qualificatio
 import { PLASTICITY_MCP_INSTRUCTIONS } from "../server-instructions.ts";
 import { CATALOG_SCHEMA_PAGE_LIMIT, catalogSummary, compactJsonSchema, exposeDirectTool, type ToolCatalogMode } from "../tool-catalog.ts";
 import { importedReferenceSourceSchema, revision, intent, type JournalEntry, type NamedSelection } from "./schemas/common.ts";
-import { isRuntimeState, compactMutationResult, changesOnlyMutationResult, compactJournalChange, result, isMcpContent, type McpContentItem } from "./results.ts";
+import { isRuntimeState, compactMutationResult, compactJournalChange, result, isMcpContent, type McpContentItem } from "./results.ts";
 import { PlasticitySession, type SessionLike, strengthDependenciesForSession } from "./session.ts";
 import { validatedStepPath, validatedParasolidPath, sha256File, provenanceSafeUrl } from "./files.ts";
 import { CompatibilityError } from "../plasticity/compat/errors.ts";
@@ -57,19 +57,10 @@ export type CadReferenceAcquisition = {
   sourceArchive?: { sha256: string; bytes: number; memberPath: string };
 };
 
-export interface ServerOptions {
-  /**
-   * "summary" (default) answers a mutation with the paginated scene summary
-   * plus the change; "changes" returns only what the mutation changed.
-   */
-  mutationResponses?: "summary" | "changes";
-}
-
 export function createToolContext(catalogMode: ToolCatalogMode, session: SessionLike = new PlasticitySession(), suppliedStrength?: StrengthDependencies, threadQualifications: PrintedThreadQualificationStore = new PrintedThreadQualificationStore(), stepImportReferences: StepImportReferenceStore = new StepImportReferenceStore(process.env.PLASTICITY_REFERENCE_ROOT), constructionHistory: ConstructionHistoryStore | null = new ConstructionHistoryStore(process.env.PLASTICITY_CONSTRUCTION_HISTORY_ROOT), stepReferenceDownloader: StepReferenceDownloaderLike = new StepReferenceDownloader(process.env.PLASTICITY_REFERENCE_ARTIFACT_ROOT
     ? { root: process.env.PLASTICITY_REFERENCE_ARTIFACT_ROOT }
-    : {}), options: ServerOptions = {}) {
-  const mutationResult = options.mutationResponses === "changes" ? changesOnlyMutationResult : compactMutationResult;
-  const server = new McpServer({ name: "plasticity-mcp", version: "0.2.2" }, { instructions: PLASTICITY_MCP_INSTRUCTIONS });
+    : {})) {
+  const server = new McpServer({ name: "plasticity-mcp", version: "0.3.0" }, { instructions: PLASTICITY_MCP_INSTRUCTIONS });
   // SDK 1.30 validates tool input before calling the handler; format failures compactly for the model.
   (server as unknown as {
     validateToolInput: (tool: { inputSchema?: z.ZodType }, args: unknown, toolName: string) => Promise<unknown>;
@@ -291,7 +282,7 @@ export function createToolContext(catalogMode: ToolCatalogMode, session: Session
       journal.push(entry);
       await persistJournalEntry(entry);
       onCompleted?.(before, after);
-      return isRuntimeState(value) ? mutationResult<T>(after, sceneDiff) : value;
+      return isRuntimeState(value) ? compactMutationResult(after, sceneDiff) : value;
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
       entry.status = /timed?\s*out|(?:socket|connection|transport|session|client)\s+(?:was\s+)?closed|uncertain/i.test(message) ? "unknown" : "failed";

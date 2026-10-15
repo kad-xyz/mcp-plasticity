@@ -7,9 +7,7 @@
   <a href="README.de.md">Deutsch</a>
 </p>
 
-<p align="center">
-  <img src="docs/assets/hero.ja.svg" alt="Plasticity MCP：部品を言葉で伝えると AI が Plasticity でモデリング" width="100%">
-</p>
+https://github.com/user-attachments/assets/0155abd1-c7cf-4251-885c-a7d4f66c87fc
 
 <p align="center">
   <img src="https://img.shields.io/badge/license-MIT-42d8c0" alt="MIT">
@@ -18,19 +16,7 @@
   <img src="https://img.shields.io/badge/MCP-Claude%20Code-85b9ff" alt="MCP · Claude Code">
 </p>
 
-> [Mesteriis/plasticity-mcp](https://github.com/Mesteriis/plasticity-mcp) の**非公式フォーク**で、Claude Code 向けに改修したものです。オリジナルの作者とは無関係で、作者の承認も受けていません。オリジナルは © 2026 Aleksand Meshchriakov、[MIT ライセンス](LICENSE)です。
-
-**Plasticity MCP** は [Plasticity](https://www.plasticity.xyz/) を AI アシスタントが操作できる CAD にします。普段の言葉でタスクを伝えるだけで、Claude Code があなたの Plasticity 上でネイティブコマンドを使って部品を作ります。正確な B-rep 形状、完全な Undo/Redo 履歴、計測、そして印刷用エクスポート。メッシュの自動生成でも、手探りのスクリプトでもありません。アシスタント自身が結果を見て寸法を確認します。
-
-## 動作デモ
-
-<!-- 動画：href="#" を動画リンク（YouTube、または GitHub エディタにドロップした .mp4）に置き換えてください -->
-<table>
-  <tr>
-    <td width="50%"><a href="#"><img src="docs/assets/video-demo.ja.svg" alt="デモ：一文でケースを作成"></a></td>
-    <td width="50%"><a href="#"><img src="docs/assets/video-setup.ja.svg" alt="2 分でセットアップ"></a></td>
-  </tr>
-</table>
+**mcp-plasticity** は [Plasticity](https://www.plasticity.xyz/) を AI アシスタントが操作できる CAD にします。普段の言葉でタスクを伝えるだけで、Claude Code があなたの Plasticity 上でネイティブコマンドを使って部品を作ります。正確な B-rep 形状、完全な Undo/Redo 履歴、計測、そして印刷用エクスポート。メッシュの自動生成でも、手探りのスクリプトでもありません。アシスタント自身が結果を見て寸法を確認します。
 
 ## 4 回の呼び出しで、箱からケースへ
 
@@ -76,12 +62,11 @@
 Apple Silicon の macOS、`/Applications` にある Plasticity 26.1.3、Node.js 24 以上、Claude Code が必要です。
 
 ```sh
-git clone https://github.com/gumayunov/plasticity-claude-mcp.git
-cd plasticity-claude-mcp
+git clone https://github.com/kad-xyz/mcp-plasticity.git
+cd mcp-plasticity
 npm install
 npm run start:plasticity   # ローカルのデバッグポート付きで Plasticity を起動（127.0.0.1 のみ）
 npm run setup:claude       # Claude Code プラグイン
-npm run setup:codex        # または元の Codex プラグイン
 ```
 
 Claude Code を再起動し、たとえば *「Plasticity に接続して、肉厚 2 mm の 90×60×32 mm ケースを作って」* と頼んでみてください。
@@ -128,4 +113,4 @@ Workbench（任意）は、タブレットからモデルを確認してメモ�
 
 ## ライセンス
 
-[MIT](LICENSE) © 2026 Aleksand Meshchriakov
+[MIT](LICENSE) © 2026 Daniil Kulikov（[kad-xyz](https://github.com/kad-xyz)）

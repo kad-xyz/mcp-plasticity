@@ -7,9 +7,7 @@
   <a href="README.de.md">Deutsch</a>
 </p>
 
-<p align="center">
-  <img src="docs/assets/hero.es.svg" alt="Plasticity MCP: describe la pieza y la IA la modela en Plasticity" width="100%">
-</p>
+https://github.com/user-attachments/assets/0155abd1-c7cf-4251-885c-a7d4f66c87fc
 
 <p align="center">
   <img src="https://img.shields.io/badge/license-MIT-42d8c0" alt="MIT">
@@ -18,19 +16,7 @@
   <img src="https://img.shields.io/badge/MCP-Claude%20Code-85b9ff" alt="MCP · Claude Code">
 </p>
 
-> **Fork no oficial** de [Mesteriis/plasticity-mcp](https://github.com/Mesteriis/plasticity-mcp), adaptado para Claude Code. No está afiliado ni respaldado por el autor original. La obra original es © 2026 Aleksand Meshchriakov bajo la [licencia MIT](LICENSE).
-
-**Plasticity MCP** convierte [Plasticity](https://www.plasticity.xyz/) en un CAD que un asistente de IA puede manejar. Describe la tarea con tus propias palabras y Claude Code construye la pieza en tu Plasticity con comandos nativos: geometría B-rep exacta, historial completo de deshacer/rehacer, medidas y exportación lista para imprimir. Nada de mallas generadas ni scripts a ciegas: el asistente mira el resultado y comprueba las medidas por sí mismo.
-
-## Míralo en acción
-
-<!-- VÍDEO: sustituye href="#" por el enlace al vídeo (YouTube o un .mp4 arrastrado al editor de GitHub) -->
-<table>
-  <tr>
-    <td width="50%"><a href="#"><img src="docs/assets/video-demo.es.svg" alt="Demo: una caja con una sola frase"></a></td>
-    <td width="50%"><a href="#"><img src="docs/assets/video-setup.es.svg" alt="Instalación en 2 minutos"></a></td>
-  </tr>
-</table>
+**mcp-plasticity** convierte [Plasticity](https://www.plasticity.xyz/) en un CAD que un asistente de IA puede manejar. Describe la tarea con tus propias palabras y Claude Code construye la pieza en tu Plasticity con comandos nativos: geometría B-rep exacta, historial completo de deshacer/rehacer, medidas y exportación lista para imprimir. Nada de mallas generadas ni scripts a ciegas: el asistente mira el resultado y comprueba las medidas por sí mismo.
 
 ## De un bloque a una caja en cuatro llamadas
 
@@ -76,12 +62,11 @@ Después de cada paso el asistente llama a `plasticity_view` y recibe las imáge
 Necesitas macOS en Apple Silicon, Plasticity 26.1.3 en `/Applications`, Node.js 24+ y Claude Code.
 
 ```sh
-git clone https://github.com/gumayunov/plasticity-claude-mcp.git
-cd plasticity-claude-mcp
+git clone https://github.com/kad-xyz/mcp-plasticity.git
+cd mcp-plasticity
 npm install
 npm run start:plasticity   # Plasticity con un puerto de depuración local (solo 127.0.0.1)
 npm run setup:claude       # plugin para Claude Code
-npm run setup:codex        # o el plugin original para Codex
 ```
 
 Reinicia Claude Code y pide, por ejemplo: *«Conéctate a Plasticity y haz una caja de 90×60×32 mm con paredes de 2 mm»*.
@@ -128,4 +113,4 @@ Workbench (opcional) es una interfaz web local para revisar el modelo y dejar no
 
 ## Licencia
 
-[MIT](LICENSE) © 2026 Aleksand Meshchriakov
+[MIT](LICENSE) © 2026 Daniil Kulikov ([kad-xyz](https://github.com/kad-xyz))

@@ -7,12 +7,9 @@ import { registerStrengthTools, type StrengthDependencies } from "../strength/mc
 import { PrintedThreadQualificationStore } from "../printing/thread-qualification.ts";
 import { type ToolCatalogMode } from "../tool-catalog.ts";
 import { PlasticitySession, type SessionLike } from "./session.ts";
-import { createToolContext, type ServerOptions } from "./context.ts";
+import { createToolContext } from "./context.ts";
 import { TOOLSET_REGISTRATIONS } from "./tools/registry.ts";
 import { loadPrompts, registerPrompts } from "./prompts.ts";
-
-
-export type { ServerOptions };
 
 export function createServer(
   session?: SessionLike,
@@ -21,9 +18,8 @@ export function createServer(
   stepImportReferences?: StepImportReferenceStore,
   constructionHistory?: ConstructionHistoryStore | null,
   stepReferenceDownloader?: StepReferenceDownloaderLike,
-  options?: ServerOptions,
 ): McpServer {
-  return createServerWithCatalog("full", session, suppliedStrength, threadQualifications, stepImportReferences, constructionHistory, stepReferenceDownloader, options);
+  return createServerWithCatalog("full", session, suppliedStrength, threadQualifications, stepImportReferences, constructionHistory, stepReferenceDownloader);
 }
 
 export function createCompactServer(...args: Parameters<typeof createServer>): McpServer {
@@ -40,9 +36,8 @@ export function createServerWithCatalog(
   stepReferenceDownloader: StepReferenceDownloaderLike = new StepReferenceDownloader(process.env.PLASTICITY_REFERENCE_ARTIFACT_ROOT
     ? { root: process.env.PLASTICITY_REFERENCE_ARTIFACT_ROOT }
     : {}),
-  options: ServerOptions = {},
 ): McpServer {
-  const ctx = createToolContext(catalogMode, session, suppliedStrength, threadQualifications, stepImportReferences, constructionHistory, stepReferenceDownloader, options);
+  const ctx = createToolContext(catalogMode, session, suppliedStrength, threadQualifications, stepImportReferences, constructionHistory, stepReferenceDownloader);
   for (const [toolset, register] of TOOLSET_REGISTRATIONS) {
     ctx.beginToolset(toolset);
     register(ctx);

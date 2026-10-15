@@ -56,58 +56,12 @@ export function compactChangedBody(body: RuntimeState["bodies"][number]) {
   };
 }
 
-export function compactMutationResult<T>(value: RuntimeState, change: SceneDiff): T {
-  return {
-    ...compactStatusSummary(value, 0, 20),
-    change: {
-      sceneChanged: change.sceneChanged,
-      revisionChanged: change.revisionChanged,
-      changed: change.changed,
-      documentChanged: change.documentChanged,
-      added: change.added.map(compactChangedBody),
-      removed: change.removed.map(compactChangedBody),
-      modified: change.modified.map((item) => ({
-        id: item.id,
-        renamed: item.renamed,
-        geometryChanged: item.geometryChanged,
-        appearanceChanged: item.appearanceChanged,
-        visibilityChanged: item.visibilityChanged,
-        before: compactChangedBody(item.before),
-        after: compactChangedBody(item.after),
-      })),
-      regionsAdded: change.regionsAdded.map(({ id, displayBoundsMm }) => ({ id, displayBoundsMm })),
-      regionsRemoved: change.regionsRemoved.map(({ id, displayBoundsMm }) => ({ id, displayBoundsMm })),
-      regionsModified: change.regionsModified.map(({ id, before, after }) => ({
-        id,
-        before: { displayBoundsMm: before.displayBoundsMm },
-        after: { displayBoundsMm: after.displayBoundsMm },
-      })),
-      constructionPlanesAdded: change.constructionPlanesAdded.map((plane) => ({ nativeId: plane.nativeId, name: plane.name })),
-      constructionPlanesRemoved: change.constructionPlanesRemoved.map((plane) => ({ nativeId: plane.nativeId, name: plane.name })),
-      constructionPlanesModified: change.constructionPlanesModified.map(({ nativeId, before, after }) => ({
-        nativeId,
-        before: { name: before.name },
-        after: { name: after.name },
-      })),
-      activeWorkplaneChanged: change.activeWorkplaneChanged,
-      materialsChanged: change.materialsChanged,
-      measurementsChanged: change.measurementsChanged,
-      sectionAnalysesChanged: change.sectionAnalysesChanged,
-      instancesChanged: change.instancesChanged,
-      referenceMeshesChanged: change.referenceMeshesChanged,
-      groupsChanged: change.groupsChanged,
-    },
-  } as T;
-}
-
 /**
  * A mutation answers with what it changed, not with the whole scene: parts
  * that stayed the same are reduced to counts and tokens, changed parts are
  * returned in full. plasticity_status still reads the complete summary.
- * Selected with mutationResponses: "changes"; the default keeps the summary
- * shape that the live acceptance scripts read.
  */
-export function changesOnlyMutationResult<T>(value: RuntimeState, change: SceneDiff): T {
+export function compactMutationResult<T>(value: RuntimeState, change: SceneDiff): T {
   const planesChanged = change.constructionPlanesAdded.length > 0
     || change.constructionPlanesRemoved.length > 0
     || change.constructionPlanesModified.length > 0

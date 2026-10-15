@@ -7,9 +7,7 @@
   <a href="README.de.md">Deutsch</a>
 </p>
 
-<p align="center">
-  <img src="docs/assets/hero.ru.svg" alt="Plasticity MCP: опишите деталь — ИИ построит её в Plasticity" width="100%">
-</p>
+https://github.com/user-attachments/assets/0155abd1-c7cf-4251-885c-a7d4f66c87fc
 
 <p align="center">
   <img src="https://img.shields.io/badge/license-MIT-42d8c0" alt="MIT">
@@ -18,19 +16,7 @@
   <img src="https://img.shields.io/badge/MCP-Claude%20Code-85b9ff" alt="MCP · Claude Code">
 </p>
 
-> **Неофициальный форк** [Mesteriis/plasticity-mcp](https://github.com/Mesteriis/plasticity-mcp), переработанный под Claude Code. Не связан с автором оригинала и не одобрен им. Оригинальная работа © 2026 Aleksand Meshchriakov, [лицензия MIT](LICENSE).
-
-**Plasticity MCP** превращает [Plasticity](https://www.plasticity.xyz/) в CAD, которым управляет ИИ-ассистент. Вы пишете задачу обычными словами, а Claude Code строит деталь в вашем Plasticity родными командами: точная B-rep-геометрия, полная история Undo/Redo, измерения и экспорт для печати. Никаких сгенерированных сеток и скриптов «вслепую»: ассистент сам смотрит на результат и проверяет размеры.
-
-## Смотрите в деле
-
-<!-- ВИДЕО: замените href="#" ссылкой на ролик (YouTube или .mp4, перетащенный в редактор GitHub) -->
-<table>
-  <tr>
-    <td width="50%"><a href="#"><img src="docs/assets/video-demo.ru.svg" alt="Демо: корпус по одной фразе"></a></td>
-    <td width="50%"><a href="#"><img src="docs/assets/video-setup.ru.svg" alt="Установка за 2 минуты"></a></td>
-  </tr>
-</table>
+**mcp-plasticity** превращает [Plasticity](https://www.plasticity.xyz/) в CAD, которым управляет ИИ-ассистент. Вы пишете задачу обычными словами, а Claude Code строит деталь в вашем Plasticity родными командами: точная B-rep-геометрия, полная история Undo/Redo, измерения и экспорт для печати. Никаких сгенерированных сеток и скриптов «вслепую»: ассистент сам смотрит на результат и проверяет размеры.
 
 ## От коробки до корпуса — четыре вызова
 
@@ -76,12 +62,11 @@
 Нужны macOS на Apple Silicon, Plasticity 26.1.3 в `/Applications`, Node.js 24+ и Claude Code.
 
 ```sh
-git clone https://github.com/gumayunov/plasticity-claude-mcp.git
-cd plasticity-claude-mcp
+git clone https://github.com/kad-xyz/mcp-plasticity.git
+cd mcp-plasticity
 npm install
 npm run start:plasticity   # Plasticity с локальным отладочным портом (только 127.0.0.1)
 npm run setup:claude       # плагин для Claude Code
-npm run setup:codex        # или плагин для Codex из оригинала
 ```
 
 Перезапустите Claude Code и напишите, например: *«Подключись к Plasticity и сделай корпус 90×60×32 мм со стенкой 2 мм»*.
@@ -128,4 +113,4 @@ Workbench (по желанию) — локальный веб-интерфейс
 
 ## Лицензия
 
-[MIT](LICENSE) © 2026 Aleksand Meshchriakov
+[MIT](LICENSE) © 2026 Куликов Даниил ([kad-xyz](https://github.com/kad-xyz))

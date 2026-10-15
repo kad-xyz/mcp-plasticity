@@ -7,9 +7,7 @@
   <a href="README.de.md">Deutsch</a>
 </p>
 
-<p align="center">
-  <img src="docs/assets/hero.zh-CN.svg" alt="Plasticity MCP：描述零件，AI 在 Plasticity 中完成建模" width="100%">
-</p>
+https://github.com/user-attachments/assets/0155abd1-c7cf-4251-885c-a7d4f66c87fc
 
 <p align="center">
   <img src="https://img.shields.io/badge/license-MIT-42d8c0" alt="MIT">
@@ -18,19 +16,7 @@
   <img src="https://img.shields.io/badge/MCP-Claude%20Code-85b9ff" alt="MCP · Claude Code">
 </p>
 
-> [Mesteriis/plasticity-mcp](https://github.com/Mesteriis/plasticity-mcp) 的**非官方分支**，针对 Claude Code 进行了改造。与原作者无关，也未获原作者认可。原作品 © 2026 Aleksand Meshchriakov，采用 [MIT 许可证](LICENSE)。
-
-**Plasticity MCP** 让 AI 助手可以直接操作 [Plasticity](https://www.plasticity.xyz/)。你用自然语言描述需求，Claude Code 就在你本机的 Plasticity 中用原生命令建模：精确的 B-rep 几何、完整的撤销/重做历史、测量以及可直接打印的导出。不是生成网格，也不是盲目运行脚本——助手会亲自查看结果并核对尺寸。
-
-## 实际演示
-
-<!-- 视频：把 href="#" 替换为视频链接（YouTube，或拖入 GitHub 编辑器的 .mp4） -->
-<table>
-  <tr>
-    <td width="50%"><a href="#"><img src="docs/assets/video-demo.zh-CN.svg" alt="演示：一句话生成外壳"></a></td>
-    <td width="50%"><a href="#"><img src="docs/assets/video-setup.zh-CN.svg" alt="2 分钟完成安装"></a></td>
-  </tr>
-</table>
+**mcp-plasticity** 让 AI 助手可以直接操作 [Plasticity](https://www.plasticity.xyz/)。你用自然语言描述需求，Claude Code 就在你本机的 Plasticity 中用原生命令建模：精确的 B-rep 几何、完整的撤销/重做历史、测量以及可直接打印的导出。不是生成网格，也不是盲目运行脚本——助手会亲自查看结果并核对尺寸。
 
 ## 四次调用，从方块到外壳
 
@@ -76,12 +62,11 @@
 需要 Apple Silicon 的 macOS、位于 `/Applications` 的 Plasticity 26.1.3、Node.js 24+ 以及 Claude Code。
 
 ```sh
-git clone https://github.com/gumayunov/plasticity-claude-mcp.git
-cd plasticity-claude-mcp
+git clone https://github.com/kad-xyz/mcp-plasticity.git
+cd mcp-plasticity
 npm install
 npm run start:plasticity   # 以本地调试端口启动 Plasticity（仅 127.0.0.1）
 npm run setup:claude       # 安装 Claude Code 插件
-npm run setup:codex        # 或安装原项目的 Codex 插件
 ```
 
 重启 Claude Code，然后试着说：*“连接 Plasticity，做一个 90×60×32 mm、壁厚 2 mm 的外壳”*。
@@ -128,4 +113,4 @@ Workbench（可选）是本地 Web 界面，可在平板上查看模型并留下
 
 ## 许可证
 
-[MIT](LICENSE) © 2026 Aleksand Meshchriakov
+[MIT](LICENSE) © 2026 Daniil Kulikov（[kad-xyz](https://github.com/kad-xyz)）

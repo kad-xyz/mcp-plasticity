@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="400" viewBox="0 0 1200 400" role="img" aria-labelledby="title">
-  <title id="title">Plasticity MCP — Ein KI-Assistent modelliert in Ihrem Plasticity mit nativen CAD-Befehlen</title>
+  <title id="title">mcp-plasticity — Ein KI-Assistent modelliert in Ihrem Plasticity mit nativen CAD-Befehlen</title>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#0a1320"/><stop offset=".55" stop-color="#10233a"/><stop offset="1" stop-color="#1a1840"/>
@@ -21,7 +21,7 @@
   <rect width="1200" height="400" rx="24" fill="url(#grid)"/>
   <rect x="1" y="1" width="1198" height="398" rx="23" fill="none" stroke="#4b6678" stroke-opacity=".5"/>
   <g font-family="-apple-system, 'SF Pro Display', 'Segoe UI', Roboto, 'PingFang SC', 'Hiragino Sans', 'Noto Sans CJK SC', 'Noto Sans JP', 'Microsoft YaHei', sans-serif" fill="#e6f1f8">
-    <text x="60" y="62" font-size="26" font-weight="700">Plasticity MCP</text>
+    <text x="60" y="62" font-size="26" font-weight="700">mcp-plasticity</text>
     <text x="60" y="92" font-size="16" fill="#9fb6c6">Ein KI-Assistent modelliert in Ihrem Plasticity mit nativen CAD-Befehlen</text>
     
     <rect x="60" y="140" width="280" height="130" rx="16" fill="#102233" stroke="url(#accent)" stroke-width="2"/>

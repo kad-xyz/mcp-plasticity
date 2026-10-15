@@ -7,9 +7,7 @@
   <a href="README.de.md">Deutsch</a>
 </p>
 
-<p align="center">
-  <img src="docs/assets/hero.en.svg" alt="Plasticity MCP: describe a part, AI builds it in Plasticity" width="100%">
-</p>
+https://github.com/user-attachments/assets/0155abd1-c7cf-4251-885c-a7d4f66c87fc
 
 <p align="center">
   <img src="https://img.shields.io/badge/license-MIT-42d8c0" alt="MIT">
@@ -18,19 +16,7 @@
   <img src="https://img.shields.io/badge/MCP-Claude%20Code-85b9ff" alt="MCP · Claude Code">
 </p>
 
-> **Unofficial fork** of [Mesteriis/plasticity-mcp](https://github.com/Mesteriis/plasticity-mcp), reworked for Claude Code. It is not affiliated with or endorsed by the upstream author. The original work is © 2026 Aleksand Meshchriakov under the [MIT License](LICENSE).
-
-**Plasticity MCP** turns [Plasticity](https://www.plasticity.xyz/) into a CAD tool an AI assistant can drive. Describe the task in plain words and Claude Code builds the part in your own Plasticity with native commands: exact B-rep geometry, full undo/redo history, measurements and print-ready export. No generated meshes, no blind scripts: the assistant looks at the result and checks the dimensions itself.
-
-## See it in action
-
-<!-- VIDEO: replace href="#" with the video link (YouTube, or an .mp4 dropped into the GitHub editor) -->
-<table>
-  <tr>
-    <td width="50%"><a href="#"><img src="docs/assets/video-demo.en.svg" alt="Demo: an enclosure from one sentence"></a></td>
-    <td width="50%"><a href="#"><img src="docs/assets/video-setup.en.svg" alt="Setup in 2 minutes"></a></td>
-  </tr>
-</table>
+**mcp-plasticity** turns [Plasticity](https://www.plasticity.xyz/) into a CAD tool an AI assistant can drive. Describe the task in plain words and Claude Code builds the part in your own Plasticity with native commands: exact B-rep geometry, full undo/redo history, measurements and print-ready export. No generated meshes, no blind scripts: the assistant looks at the result and checks the dimensions itself.
 
 ## From a box to an enclosure in four calls
 
@@ -76,12 +62,11 @@ After each step the assistant calls `plasticity_view` and receives images right 
 You need macOS on Apple Silicon, Plasticity 26.1.3 in `/Applications`, Node.js 24+ and Claude Code.
 
 ```sh
-git clone https://github.com/gumayunov/plasticity-claude-mcp.git
-cd plasticity-claude-mcp
+git clone https://github.com/kad-xyz/mcp-plasticity.git
+cd mcp-plasticity
 npm install
 npm run start:plasticity   # Plasticity with a local debugging port (127.0.0.1 only)
 npm run setup:claude       # Claude Code plugin
-npm run setup:codex        # or the upstream Codex plugin
 ```
 
 Restart Claude Code and ask, for example: *"Connect to Plasticity and make a 90×60×32 mm enclosure with 2 mm walls"*.
@@ -128,4 +113,4 @@ Workbench (optional) is a local web UI for reviewing the model and leaving notes
 
 ## License
 
-[MIT](LICENSE) © 2026 Aleksand Meshchriakov
+[MIT](LICENSE) © 2026 Daniil Kulikov ([kad-xyz](https://github.com/kad-xyz))

@@ -25,7 +25,7 @@ const DISPOSABLE = [
   "native-radius-measurement", "native-rectangle", "native-reference-mesh", "native-section-analysis", "native-sheet-insertion",
   "native-sketch-primitives", "native-slot-profiles", "native-solid-properties", "native-sphere", "native-surface-continuity",
   "native-surface-curves", "native-surface-refinement", "native-svg-import", "native-svg-polynomial-degrees", "native-text",
-  "native-tool-router", "native-topology-cache", "native-topology-distance", "native-torus", "native-ui-edits", "native-vertex-offset",
+  "native-tool-router", "native-topology-distance", "native-torus", "native-ui-edits", "native-vertex-offset",
   "nonparallel-planar-clearance", "plate-strength", "printed-thread-calibration", "printed-threads", "section-strength",
   "split-solid",
 ];

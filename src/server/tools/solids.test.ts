@@ -5,7 +5,7 @@ import { join } from "node:path";
 import { test } from "node:test";
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { InMemoryTransport } from "@modelcontextprotocol/sdk/inMemory.js";
-import { createServer as createPlasticityServer, type ServerOptions, type SessionLike } from "../index.ts";
+import { createServer as createPlasticityServer, type SessionLike } from "../index.ts";
 import { PlasticityOperations } from "../../plasticity/operations/index.ts";
 import type { RuntimeState } from "../../plasticity/runtime.ts";
 import { ConstructionHistoryStore } from "../../plasticity/construction-history.ts";
@@ -1345,7 +1345,7 @@ test("durable construction history survives MCP recreation and detects manual re
   await secondClient.close(); await secondServer.close();
 });
 
-async function createBoxResponse(options?: ServerOptions): Promise<{ result: any; state: RuntimeState; boundsMm: { min: [number, number, number]; max: [number, number, number] } }> {
+test("native mutation responses use the reconciled state and include a compact exact scene change", async () => {
   const boundsMm = { min: [0, 0, 0] as [number, number, number], max: [1, 1, 1] as [number, number, number] };
   const face = {
     id: "face-1", surfaceType: "plane", planar: true, centerMm: [0, 0, 0] as [number, number, number],
@@ -1376,41 +1376,16 @@ async function createBoxResponse(options?: ServerOptions): Promise<{ result: any
     capabilities() { return { bindings: [], operations: unavailableConstruction() }; },
     async captureSnapshot() { return {}; }, async changesSince() { return {}; }, async waitForChange() { return {}; },
   } satisfies SessionLike;
-  const server = createServer(fake, undefined, undefined, undefined, options);
+  const server = createServer(fake);
   const client = new Client({ name: "compact-mutation-response-client", version: "1.0.0" });
   const [clientTransport, serverTransport] = InMemoryTransport.createLinkedPair();
   await server.connect(serverTransport); await client.connect(clientTransport);
+
   const response = await client.callTool({ name: "plasticity_create_box", arguments: {
     originMm: [0, 0, 0], sizeMm: [1, 1, 1], revision: "r1",
   } });
   assert.equal(response.isError, undefined);
   const result = JSON.parse((response.content as Array<{ type: string; text?: string }>).find((item) => item.type === "text")?.text ?? "null");
-  await client.close(); await server.close();
-  return { result, state, boundsMm };
-}
-
-test("native mutation responses use the reconciled state and include a compact exact scene change", async () => {
-  const { result, state, boundsMm } = await createBoxResponse();
-  assert.equal(result.revision, "r2");
-  assert.equal(result.bodyPagination.total, 61);
-  assert.equal(result.bodyPagination.limit, 20);
-  assert.equal(result.bodyPagination.nextOffset, 20);
-  assert.equal(result.bodies.length, 20);
-  assert.ok(result.bodies.every((body: Record<string, unknown>) => !("faces" in body) && !("edges" in body)
-    && !("faceIds" in body) && !("edgeIds" in body) && !("vertices" in body)));
-  assert.deepEqual(result.change.added, [{
-    id: 60, versionId: 160, type: "Solid", name: "Body 60", boundsMm,
-    faceCount: 1, edgeCount: 1, vertexCount: 1,
-  }]);
-  assert.equal(result.change.sceneChanged, true);
-  assert.equal(result.change.revisionChanged, true);
-  assert.doesNotMatch(JSON.stringify(result), /"surfaceType"|"curveType"|"vertexIds"/);
-  assert.ok(JSON.stringify(result).length < JSON.stringify(state).length / 5,
-    "mutation responses should not repeat the full native B-Rep payload");
-});
-
-test("changes-only mutation responses return what changed instead of the scene summary", async () => {
-  const { result, boundsMm } = await createBoxResponse({ mutationResponses: "changes" });
   assert.equal(result.revision, "r2");
   assert.equal(result.bodyCount, 61);
   assert.equal("bodies" in result, false, "unchanged bodies are read with plasticity_status, not repeated after every edit");
@@ -1423,6 +1398,11 @@ test("changes-only mutation responses return what changed instead of the scene s
     faceCount: 1, edgeCount: 1, vertexCount: 1,
   }]);
   assert.equal(result.change.sceneChanged, true);
+  assert.equal(result.change.revisionChanged, true);
+  assert.doesNotMatch(JSON.stringify(result), /"surfaceType"|"curveType"|"vertexIds"/);
+  assert.ok(JSON.stringify(result).length < JSON.stringify(state).length / 5,
+    "mutation responses should not repeat the full native B-Rep payload");
+  await client.close(); await server.close();
 });
 
 test("history storage failure remains visible without converting a completed CAD edit into an apparent failure", async (context) => {

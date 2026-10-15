@@ -7,9 +7,7 @@
   <b>Deutsch</b>
 </p>
 
-<p align="center">
-  <img src="docs/assets/hero.de.svg" alt="Plasticity MCP: Bauteil beschreiben, die KI modelliert es in Plasticity" width="100%">
-</p>
+https://github.com/user-attachments/assets/0155abd1-c7cf-4251-885c-a7d4f66c87fc
 
 <p align="center">
   <img src="https://img.shields.io/badge/license-MIT-42d8c0" alt="MIT">
@@ -18,19 +16,7 @@
   <img src="https://img.shields.io/badge/MCP-Claude%20Code-85b9ff" alt="MCP · Claude Code">
 </p>
 
-> **Inoffizieller Fork** von [Mesteriis/plasticity-mcp](https://github.com/Mesteriis/plasticity-mcp), für Claude Code überarbeitet. Er steht in keiner Verbindung zum ursprünglichen Autor und wird von ihm nicht unterstützt. Das Original ist © 2026 Aleksand Meshchriakov unter der [MIT-Lizenz](LICENSE).
-
-**Plasticity MCP** macht [Plasticity](https://www.plasticity.xyz/) zu einem CAD, das ein KI-Assistent bedienen kann. Sie beschreiben die Aufgabe in normaler Sprache, und Claude Code baut das Bauteil in Ihrem Plasticity mit nativen Befehlen: exakte B-Rep-Geometrie, vollständiger Undo/Redo-Verlauf, Messungen und druckfertiger Export. Keine generierten Netze, keine Skripte ins Blaue: Der Assistent sieht sich das Ergebnis an und prüft die Maße selbst.
-
-## In Aktion
-
-<!-- VIDEO: href="#" durch den Videolink ersetzen (YouTube oder eine in den GitHub-Editor gezogene .mp4) -->
-<table>
-  <tr>
-    <td width="50%"><a href="#"><img src="docs/assets/video-demo.de.svg" alt="Demo: ein Gehäuse aus einem Satz"></a></td>
-    <td width="50%"><a href="#"><img src="docs/assets/video-setup.de.svg" alt="Einrichtung in 2 Minuten"></a></td>
-  </tr>
-</table>
+**mcp-plasticity** macht [Plasticity](https://www.plasticity.xyz/) zu einem CAD, das ein KI-Assistent bedienen kann. Sie beschreiben die Aufgabe in normaler Sprache, und Claude Code baut das Bauteil in Ihrem Plasticity mit nativen Befehlen: exakte B-Rep-Geometrie, vollständiger Undo/Redo-Verlauf, Messungen und druckfertiger Export. Keine generierten Netze, keine Skripte ins Blaue: Der Assistent sieht sich das Ergebnis an und prüft die Maße selbst.
 
 ## Vom Quader zum Gehäuse in vier Aufrufen
 
@@ -76,12 +62,11 @@ Nach jedem Schritt ruft der Assistent `plasticity_view` auf und erhält die Bild
 Sie brauchen macOS auf Apple Silicon, Plasticity 26.1.3 in `/Applications`, Node.js 24+ und Claude Code.
 
 ```sh
-git clone https://github.com/gumayunov/plasticity-claude-mcp.git
-cd plasticity-claude-mcp
+git clone https://github.com/kad-xyz/mcp-plasticity.git
+cd mcp-plasticity
 npm install
 npm run start:plasticity   # Plasticity mit lokalem Debug-Port (nur 127.0.0.1)
 npm run setup:claude       # Plugin für Claude Code
-npm run setup:codex        # oder das ursprüngliche Codex-Plugin
 ```
 
 Starten Sie Claude Code neu und schreiben Sie zum Beispiel: *„Verbinde dich mit Plasticity und baue ein Gehäuse 90×60×32 mm mit 2 mm Wand“*.
@@ -128,4 +113,4 @@ Workbench (optional) ist eine lokale Weboberfläche, um das Modell zu prüfen un
 
 ## Lizenz
 
-[MIT](LICENSE) © 2026 Aleksand Meshchriakov
+[MIT](LICENSE) © 2026 Daniil Kulikov ([kad-xyz](https://github.com/kad-xyz))

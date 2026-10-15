@@ -1,4 +1,4 @@
-import { createServer as createPlasticityServer, type ServerOptions, type SessionLike } from "./index.ts";
+import { createServer as createPlasticityServer, type SessionLike } from "./index.ts";
 import type { RuntimeState } from "../plasticity/runtime.ts";
 import { PrintedThreadQualificationStore } from "../printing/thread-qualification.ts";
 import { StepImportReferenceStore } from "../plasticity/import-reference-store.ts";
@@ -9,8 +9,7 @@ export const createServer = (
   strength?: Parameters<typeof createPlasticityServer>[1],
   qualifications?: PrintedThreadQualificationStore,
   references?: StepImportReferenceStore,
-  options?: ServerOptions,
-) => createPlasticityServer(session, strength, qualifications, references, null, undefined, options);
+) => createPlasticityServer(session, strength, qualifications, references, null);
 
 export function cohesiveCouponInput(process: MaterialCouponQualificationInput["process"], modulus: number): MaterialCouponQualificationInput {
   const properties = { youngModulusMPa: modulus, shearModulusMPa: 800, tensileStrengthMPa: 30, shearStrengthMPa: 20 };
