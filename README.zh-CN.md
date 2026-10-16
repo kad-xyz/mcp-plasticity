@@ -7,7 +7,7 @@
   <a href="README.de.md">Deutsch</a>
 </p>
 
-https://github.com/user-attachments/assets/0155abd1-c7cf-4251-885c-a7d4f66c87fc
+https://github.com/user-attachments/assets/cb1fc112-ba36-4e9a-9a96-5dbc41b57455
 
 <p align="center">
   <img src="https://img.shields.io/badge/license-MIT-42d8c0" alt="MIT">
